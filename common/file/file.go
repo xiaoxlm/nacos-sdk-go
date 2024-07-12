@@ -17,6 +17,7 @@
 package file
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -57,7 +58,8 @@ func MkdirIfNecessary(createDir string) (err error) {
 		if _, e := os.Stat(d); os.IsNotExist(e) {
 			err = os.Mkdir(d, os.ModePerm) //在当前目录下生成md目录
 			if err != nil {
-				break
+				fmt.Printf("create mkdir error. err:%v\n", err.Error())
+				return err
 			}
 		}
 	}
